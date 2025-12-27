@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ("depreciation_method", models.CharField(max_length=50)),
                 ("purchase_cost", models.IntegerField()),
                 ("tax_effective_life", models.IntegerField()),
-                ("opening_cost", models.IntegerField())),
+                ("opening_cost", models.IntegerField()),
                 ("opening_accum_depreciation", models.IntegerField()),
                 ("opening_wdv", models.IntegerField()),
                 ("addition", models.IntegerField()),
