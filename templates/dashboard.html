@@ -13,8 +13,9 @@
 
 {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
 
-<table class="table table-sm table-striped">
-  <thead><tr>
+<div class="table-responsive">
+<table class="table table-sm table-striped table-bordered w-100">
+  <thead class="table-light"><tr>
     <th>Asset ID</th><th>Description</th><th>Start Date</th><th>Method</th><th>Purchase Cost</th>
     <th>Effective Life</th><th>Opening Cost</th><th>Opening Acc Dep</th><th>OWDV</th>
     <th>Add</th><th>Dispose</th><th>Tax Depn</th>
@@ -44,4 +45,5 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 {% endblock %}
