@@ -1,7 +1,16 @@
 
 {% extends "base.html" %}
 {% block content %}
-<h3>My TFAR records</h3>
+<h3>TFAR — {{ client.name if client }} </h3>
+
+<form method="post" class="mb-3">
+  {% csrf_token %}
+  {{ form.client|add_class:"form-select" }}
+  <button class="btn btn-primary ms-2">Switch</button>
+</form>
+
+{% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+
 <table class="table table-sm table-striped">
   <thead><tr>
     <th>Asset ID</th><th>Description</th><th>Start Date</th><th>Method</th><th>Purchase</th>
@@ -29,7 +38,7 @@
       <td>{{ r.closing_wdv }}</td>
     </tr>
     {% empty %}
-    <tr><td colspan="15">No data yet—upload a file.</td></tr>
+    <tr><td colspan="15">No records for this client yet.</td></tr>
     {% endfor %}
   </tbody>
 </table>
