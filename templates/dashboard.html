@@ -3,11 +3,15 @@
 {% block content %}
 <h3>TFAR — {{ client.name if client }} </h3>
 
+
+{% if form %}
 <form method="post" class="mb-3">
   {% csrf_token %}
-  {{ form.client|add_class:"form-select" }}
+  {{ form.client }}
   <button class="btn btn-primary ms-2">Switch</button>
 </form>
+{% endif %}
+
 
 {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
 
