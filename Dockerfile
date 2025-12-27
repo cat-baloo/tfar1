@@ -46,4 +46,5 @@ EXPOSE 8000
 
 # Single command: run migrations, then start Gunicorn
 # No entrypoint script, no .sh files referenced.
-CMD ["/bin/sh", "-c", "python manage.py migrate --noinput && exec gunicorn tfar1.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 120 --chdir /app"]
+#CMD ["/bin/sh", "-c", "python manage.py migrate --noinput && exec gunicorn tfar1.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 120 --chdir /app"]
+CMD ["/bin/sh", "-c", "set -e; python manage.py migrate && exec gunicorn tfar1.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 120 --chdir /app"]
