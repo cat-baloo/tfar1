@@ -9,7 +9,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-insecure-key")
+
 DEBUG = os.getenv("DEBUG", "True") == "True"
+
 ALLOWED_HOSTS = [h for h in os.getenv("ALLOWED_HOSTS", "").split(",") if h] or ["*"]
 
 INSTALLED_APPS = [
@@ -72,7 +74,17 @@ LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "login"
 
+
+# Comma‑separated URLs *with https://* prefix
 CSRF_TRUSTED_ORIGINS = [
-    "https://tfar1.cat-baloo.com",
-    "https://web-production-8a1f6.up.railway.app",
+    origin.strip()
+    for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
 ]
+
+# HTTPS cookie security (leave enabled for Railway)
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# Required so Django knows requests come through Railway’s HTTPS proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
