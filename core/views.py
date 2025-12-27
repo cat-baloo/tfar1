@@ -89,7 +89,7 @@ def dashboard(request):
                 "rows": [],
                 "form": None,
                 "client": None,
-                "error": "You are not assigned to any clients. Please ask an administrator to add you."
+                "error": "You are not assigned to any clients. Please ask the Creator to add you."
             }
         )
     
