@@ -96,6 +96,9 @@ def _to_date(value: Any):
         raise ValueError(f"Cannot parse date '{value}'")
 
 
+def debug_view(request):
+    raise Exception("Manual test exception — this should show a 500 if debug middleware isn’t interfering")
+
 # -----------------------
 # Authentication views
 # -----------------------
