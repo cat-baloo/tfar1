@@ -65,4 +65,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=30s CMD \
 
 # Default entrypoint: run migrations then start Gunicorn bound to $PORT
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "tfar1.wsgi:application", "--bind", "0.0.0.0:${PORT:-8000}", "--workers", "3", "--timeout", "120"]
+CMD ["gunicorn", "tfar1.wsgi:application", "--bind", "0.0.0.0:${PORT:-8000}", "--workers", "3", "--timeout", "120", "--chdir", "/app"]
