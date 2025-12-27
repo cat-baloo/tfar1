@@ -11,5 +11,5 @@ urlpatterns = [
     path("upload/", views.upload_tfar, name="upload_tfar"),
     path("download/", views.download_tfar_csv, name="download_tfar_csv"),
     #path("debug/", views.debug_view),
-    #path("check/", views.safe_debug),
+    path("check/", views.safe_debug),
 ]
