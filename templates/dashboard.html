@@ -1,8 +1,7 @@
 
 {% extends "base.html" %}
 {% block content %}
-<h3>TFAR — {{ client.name if client }} </h3>
-
+<h3>TFAR {% if client %}— {{ client.name }}{% endif %}</h3>
 
 {% if form %}
 <form method="post" class="mb-3">
@@ -11,7 +10,6 @@
   <button class="btn btn-primary ms-2">Switch</button>
 </form>
 {% endif %}
-
 
 {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
 
