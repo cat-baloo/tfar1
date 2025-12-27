@@ -1,14 +1,14 @@
 
-#!/usr/bin/env bash
+#!/bin/sh
 set -e
 
-# Ensure Django can import the settings
-export DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-tfar1.settings}
+# Ensure Django settings are available
+export DJANGO_SETTINGS_MODULE="${DJANGO_SETTINGS_MODULE:-tfar1.settings}"
 
 # Run database migrations on container start
 python manage.py migrate --noinput
 
-# Optionally create superuser from env (uncomment and set env if you want)
+# Optionally create superuser from env (uncomment + set env vars)
 # if [ -n "$DJANGO_SU_NAME" ] && [ -n "$DJANGO_SU_EMAIL" ] && [ -n "$DJANGO_SU_PASSWORD" ]; then
 #   python - <<'PYCODE'
 # import os
@@ -22,5 +22,5 @@ python manage.py migrate --noinput
 # PYCODE
 # fi
 
-# Finally start the app (exec the CMD passed from Dockerfile)
+# Exec the command (Gunicorn) passed from Dockerfile CMD / Railway
 exec "$@"
