@@ -99,6 +99,20 @@ def _to_date(value: Any):
 def debug_view(request):
     raise Exception("Manual test exception — this should show a 500 if debug middleware isn’t interfering")
 
+
+import traceback
+
+def safe_debug(request):
+    try:
+        # Force dashboard code
+        rows = TfarRecord.objects.filter(owner=request.user)[:1]
+        return HttpResponse("Dashboard query OK, count=" + str(rows.count()))
+    except Exception as e:
+        return HttpResponse(
+            "<pre>" + str(e) + "\n\n" + traceback.format_exc() + "</pre>", 
+            content_type="text/plain"
+        )
+
 # -----------------------
 # Authentication views
 # -----------------------
