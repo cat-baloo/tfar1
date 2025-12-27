@@ -75,16 +75,32 @@ def debug_view(request):
 
 ####TEMP ABOVE
 
+
+
 @login_required
 def dashboard(request):
+    memberships = ClientMembership.objects.filter(user=request.user).select_related("client").order_by("client__name")
+
+    if not memberships.exists():
+        return render(
+            request, 
+            "dashboard.html",
+            {
+                "rows": [],
+                "form": None,
+                "client": None,
+                "error": "You are not assigned to any clients. Please ask an administrator to add you."
+            }
+        )
+    
     # Determine selected client (from POST or session), fallback to first membership
     selected_client_id = request.POST.get("client") or request.session.get("selected_client_id")
-    memberships = ClientMembership.objects.filter(user=request.user).select_related("client").order_by("client__name")
-    if not memberships.exists():
-        return render(request, "dashboard.html", {
-            "rows": [], "form": ClientSelectForm(user=request.user),
-            "error": "No client memberships assigned. Ask an admin to add you to a client."
-        })
+    #memberships = ClientMembership.objects.filter(user=request.user).select_related("client").order_by("client__name")
+    #if not memberships.exists():
+    #    return render(request, "dashboard.html", {
+    #        "rows": [], "form": ClientSelectForm(user=request.user),
+    #        "error": "No client memberships assigned. Ask an admin to add you to a client."
+    #    })
 
     if not selected_client_id:
         selected_client_id = str(memberships.first().client.id)
