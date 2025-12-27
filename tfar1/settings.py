@@ -72,7 +72,7 @@ LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "login"
 
-
 CSRF_TRUSTED_ORIGINS = [
+    "https://tfar1.cat-baloo.com",
     "https://web-production-8a1f6.up.railway.app",
 ]
