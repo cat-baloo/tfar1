@@ -15,7 +15,9 @@
   <button class="btn btn-success mt-3">Upload</button>
 </form>
 
-<p class="mt-3">Expected headers (exact match, case-insensitive):<br>
-<code>asset id, asset description, tax start date, depreciation method, purchase cost, tax effective life, opening cost, opening accumulated depreciation, opening wdv, addition, disposal, tax depreciation, closing cost, closing accumulated depreciation, closing wdv</code>
+<p class="mt-3">
+  <strong>Accepted headers:</strong><br>
+  <code>asset id, asset description, tax start date, depreciation method, purchase cost, tax effective life, opening cost, opening accumulated depreciation, opening wdv, addition, disposal, tax depreciation, closing cost, closing accumulated depreciation, closing wdv</code><br>
+  Optional: add <code>client</code> column — if present, every row must match the selected client.
 </p>
 {% endblock %}
