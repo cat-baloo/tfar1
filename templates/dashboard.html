@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h3>My TFAR records</h3>
+<table class="table table-sm table-striped">
+  <thead><tr>
+    <th>Asset ID</th><th>Description</th><th>Start Date</th><th>Method</th><th>Purchase</th>
+    <th>Life</th><th>Open Cost</th><th>Open Acc Dep</th><th>Open WDV</th>
+    <th>Add</th><th>Dispose</th><th>Tax Depn</th>
+    <th>Close Cost</th><th>Close Acc Dep</th><th>Close WDV</th>
+  </tr></thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.asset_id }}</td>
+      <td>{{ r.asset_description }}</td>
+      <td>{{ r.tax_start_date }}</td>
+      <td>{{ r.depreciation_method }}</td>
+      <td>{{ r.purchase_cost }}</td>
+      <td>{{ r.tax_effective_life }}</td>
+      <td>{{ r.opening_cost }}</td>
+      <td>{{ r.opening_accum_depreciation }}</td>
+      <td>{{ r.opening_wdv }}</td>
+      <td>{{ r.addition }}</td>
+      <td>{{ r.disposal }}</td>
+      <td>{{ r.tax_depreciation }}</td>
+      <td>{{ r.closing_cost }}</td>
+      <td>{{ r.closing_accum_depreciation }}</td>
+      <td>{{ r.closing_wdv }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="15">No data yet—upload a file.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
