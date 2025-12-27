@@ -56,6 +56,25 @@ def login_view(request):
 def logout_view(request):
     logout(request); return redirect("login")
 
+###TEMP - DELETE FOR PROD
+import traceback
+
+def safe_debug(request):
+    try:
+        # Force dashboard code
+        rows = TfarRecord.objects.filter(owner=request.user)[:1]
+        return HttpResponse("Dashboard query OK, count=" + str(rows.count()))
+    except Exception as e:
+        return HttpResponse(
+            "<pre>" + str(e) + "\n\n" + traceback.format_exc() + "</pre>", 
+            content_type="text/plain"
+        )
+
+def debug_view(request):
+    raise Exception("Manual test exception — this should show a 500 if debug middleware isn’t interfering")
+
+####TEMP ABOVE
+
 @login_required
 def dashboard(request):
     # Determine selected client (from POST or session), fallback to first membership
