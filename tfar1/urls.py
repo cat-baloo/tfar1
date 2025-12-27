@@ -10,4 +10,5 @@ urlpatterns = [
     path("", views.dashboard, name="dashboard"),
     path("upload/", views.upload_tfar, name="upload_tfar"),
     path("download/", views.download_tfar_csv, name="download_tfar_csv"),
+    path("debug/", views.debug_view),
 ]
